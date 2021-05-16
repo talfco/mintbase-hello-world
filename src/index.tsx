@@ -29,11 +29,9 @@ const comp1 = (<h1>Hello1, {formatName(user)}!</h1>);
 const element1 = <Welcome firstName="Felix" lastName="Talfco" />;
 
 ReactDOM.render(
- // <React.StrictMode>
-    comp1,
- //   element1,
- //    <App />,
-//  </React.StrictMode>,
+  <React.StrictMode>
+     <App />,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

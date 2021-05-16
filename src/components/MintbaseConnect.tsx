@@ -1,18 +1,20 @@
 import { Wallet, Chain, Network } from 'mintbase'
 import React from 'react';
+import HelloWorld from "./HelloWorld";
 
-class MintbaseConnect extends React.Component {
+class MintbaseConnect extends React.Component<{}, { date: Date, accountId: String }> {
 
-    constructor(props : { date: Date}) {
+    constructor(props: any) {
         super(props);
-        this.state = {date: new Date()};
+        this.state = {date: new Date(), accountId: ''};
     }
 
     render() {
         return (
             <div>
                 <h1>Hello, world!</h1>
-                <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
+                <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+                <h3>Wallet: {this.state.accountId}</h3>
             </div>
         );
     }
@@ -30,6 +32,8 @@ class MintbaseConnect extends React.Component {
 
         if (isConnected) {
             const {data: details} = await wallet.details()
+            this.setState({accountId: details.accountId })
+            this.render()
 
             /*
               accountId: "qwerty.testnet"
@@ -37,10 +41,12 @@ class MintbaseConnect extends React.Component {
               balance: "365.77"
               contractName: "mintbase13.testnet"
             */
+        } else {
+            console.log("Error"+error)
         }
 
     }
 }
-
+export default MintbaseConnect
 
 
